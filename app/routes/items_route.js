@@ -12,9 +12,10 @@ const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 
 router.post('/items', requireToken, (req, res, next) => {
+  req.body.item.owner = req.user._id
   Item.create(req.body.item)
     .then(item => {
-      res.status(201).json({ item: item.toObject() })
+      res.status(201).json({ item: item })
     })
     .catch(next)
 })
@@ -54,7 +55,7 @@ router.delete('/items/:id', requireToken, (req, res, next) => {
 router.get('/items/:id', requireToken, (req, res, next) => {
   Item.findById(req.params.id)
     .then(handle404)
-    .then(item => res.status(200).json({ item: item.toObject() }))
+    .then(item => res.status(200).json({ item: item }))
     .catch(next)
 })
 

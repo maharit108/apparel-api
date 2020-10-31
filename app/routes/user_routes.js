@@ -43,9 +43,14 @@ router.post('/sign-up', (req, res, next) => {
     .then(() => bcrypt.hash(req.body.credentials.password, bcryptSaltRounds))
     .then(hash => {
       // return necessary params to create a user
+      let isOwner = false
+      if (req.body.credentials.owner) {
+        isOwner = true
+      }
       return {
         email: req.body.credentials.email,
-        hashedPassword: hash
+        hashedPassword: hash,
+        owner: isOwner
       }
     })
     // create user with provided email and hashed password
