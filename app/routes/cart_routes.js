@@ -13,7 +13,6 @@ const router = express.Router()
 
 // create a cart--
 router.post('/my-cart', requireToken, (req, res, next) => {
-  console.log('yoyoyo', req.user)
   req.body.bag.owner = req.user._id
   Cart.create(req.body.bag)
     .then(bag => {
@@ -24,7 +23,6 @@ router.post('/my-cart', requireToken, (req, res, next) => {
 
 // edit cart--
 router.patch('/my-cart/:id', requireToken, removeBlanks, (req, res, next) => {
-  console.log('update', req.body)
   if (req.body.bag.owner) {
     delete req.body.bag.owner
   }
