@@ -24,6 +24,35 @@ This is the back end server for the Apparels (ecommerce application). It uses no
 This application has 3 resources- users, items and cart. Users model is used to store account information (email, password, isOwner, token) of customers and owner. Item model is used to store information about items that are put up by owner for sale. Cart model is used to store items liked by customers. CRUD actions on these resources is what basically gives functionality to e-commerce website. Tokens are used to keep track of sign in user.
 Routes are set up flexible, just checking ownership of items for edit, delete actions, so that this application can be used by client side as required. Front end put other rules as required.
 
+### Authentication
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/sign-up`             | `users#signup`    |
+| POST   | `/sign-in`             | `users#signin`    |
+| PATCH  | `/change-password/`    | `users#changepw`  |
+| DELETE | `/sign-out/`           | `users#signout`   |
+
+### Cart Routes
+| Verb   | URI Pattern             | Controller#Action             |
+|--------|-------------------------|-------------------------------|
+| POST   | `/my-cart`              | `cart#create`                 |
+| PATCH  | `/my-cart/:id`          | `cart#update`                 |
+| DELETE | `/my-cart/:id`          | `cart#delete`                 |
+| GET    | `/my-cart/:id`          | `cart#getCartById`            |
+| GET    | `/my-cart`              | `carts#getAllIncompleteCarts` |
+| GET    | `/carts`                | `carts#getAllCarts `          |
+
+### Items Routes
+| Verb   | URI Pattern             | Controller#Action             |
+|--------|-------------------------|-------------------------------|
+| POST   | `/items`                | `cart#create`                 |
+| GET    | `/items`                | `cart#getAllItems`            |
+| PATCH  | `/items/:id`            | `cart#update`                 |
+| DELETE | `/items/:id`            | `cart#delete`                 |
+| GET    | `/items/:id`            | `carts#getItemById`           |
+
+
 ## User Stories
   - As a client, I would like to be able to make user accounts and sign in (CREATE, GET requests)so that my personal operations can only be done by me.
   - As a client, I would like to make PATCH request to change password and DELETE request to sign out.
