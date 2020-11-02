@@ -46,11 +46,11 @@ Routes are set up flexible, just checking ownership of items for edit, delete ac
 ### Items Routes
 | Verb   | URI Pattern             | Controller#Action             |
 |--------|-------------------------|-------------------------------|
-| POST   | `/items`                | `cart#create`                 |
-| GET    | `/items`                | `cart#getAllItems`            |
-| PATCH  | `/items/:id`            | `cart#update`                 |
-| DELETE | `/items/:id`            | `cart#delete`                 |
-| GET    | `/items/:id`            | `carts#getItemById`           |
+| POST   | `/items`                | `items#create`                 |
+| GET    | `/items`                | `items#getAllItems`            |
+| PATCH  | `/items/:id`            | `items#update`                 |
+| DELETE | `/items/:id`            | `items#delete`                 |
+| GET    | `/items/:id`            | `items#getItemById`           |
 
 
 ## User Stories
